@@ -5,6 +5,7 @@ classes:
 parameters:
   _param:
     nginx_aptly_server_host: ${linux:network:fqdn}
+    aptly_server_secure: true
   iptables:
     service:
       enabled: true
@@ -71,7 +72,8 @@ parameters:
   aptly:
     server:
       enabled: true
-      secure: true
-      gpg_keypair_id: ${_param:aptly_gpg_keypair_id}
-      gpg_public_key: ${_param:aptly_gpg_public_key}
-      gpg_private_key: ${_param:aptly_gpg_private_key}
+      secure: ${_param:aptly_server_secure}
+      gpg:
+        keypair_id: ${_param:aptly_gpg_keypair_id}
+        public_key: ${_param:aptly_gpg_public_key}
+        private_key: ${_param:aptly_gpg_private_key}

@@ -1,9 +1,12 @@
 classes:
   - service.gerrit.client
 parameters:
+  _param:
+    gerrit_try_login: true
   gerrit:
     client:
       enabled: True
+      try_login: ${_param:gerrit_try_login}
       source:
         engine: pip
       dir:
@@ -14,11 +17,15 @@ parameters:
         host: ${_param:cluster_vip_address}
         user: admin
         email: ${_param:gerrit_admin_email}
+        auth_method: basic
         http_port: 8080
         ssh_port: 29418
         protocol: http
         password: ${_param:gerrit_admin_password}
         key: ${_param:gerrit_admin_private_key}
+      user:
+        admin:
+          ssh_key: ${_param:gerrit_admin_public_key}
       group:
         Event Streaming Users:
           description: Event Streaming Users
