@@ -12,4 +12,4 @@ parameters:
           params:
             salt_master_host: ${_param:infra_config_deploy_address}
             linux_system_codename: xenial
-            single_address: ${_param:infra_maas_node01_deploy_address}
+            deploy_address: ${_param:infra_maas_node01_deploy_address}
